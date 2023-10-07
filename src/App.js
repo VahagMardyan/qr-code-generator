@@ -4,8 +4,6 @@ import { BsQrCode } from 'react-icons/bs';
 import { BiReset } from 'react-icons/bi';
 import './App.css';
 
-let s = '';
-
 const App = () => {
 
   const qrValue = useRef(null);
