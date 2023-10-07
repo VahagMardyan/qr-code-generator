@@ -4,6 +4,8 @@ import { BsQrCode } from 'react-icons/bs';
 import { BiReset } from 'react-icons/bi';
 import './App.css';
 
+let s = '';
+
 const App = () => {
 
   const qrValue = useRef(null);
@@ -26,7 +28,7 @@ const App = () => {
   const generate = () => {
     setLoading(true);
     if (qrValue.current.value) {
-    setTimeout(() => {
+      setTimeout(() => {
         setQrDatas(
           QRCode.toDataURL(qrValue.current.value)
             .then(url => {
