@@ -32,7 +32,7 @@ const App = () => {
             .then(url => {
               setQrImageUrl(url);
               setLoading(false);
-              // qrValue.current.value = '';
+              qrValue.current.value = '';
             })
             .catch(error => {
               setLoading(false);
