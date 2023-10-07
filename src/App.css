@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.display {
+    width: 100%;
+}
+
+.qrcode-input {
+    width: 25%;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.qrcode-button,
+.reset-button {
+    width: 35px;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.qrcode-div {
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qrcode-div img {
+    width: 250px;
+    height: 250px;
+}
