@@ -2,6 +2,8 @@ import { useRef, Fragment, useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import { BsQrCode } from 'react-icons/bs';
 import { BiReset } from 'react-icons/bi';
+import { CiSaveDown1 } from 'react-icons/ci';
+import { saveAs } from 'file-saver';
 import './App.css';
 
 const App = () => {
@@ -46,6 +48,25 @@ const App = () => {
     }
   };
 
+  const download = () => {
+
+    const confirmDownloading = window.confirm(`Download QR Code?`);
+
+    if (confirmDownloading) {
+      if (qrImageUrl) {
+        fetch(qrImageUrl)
+          .then(response => response.blob())
+          .then(blob => {
+            saveAs(blob, 'qr-code.png');
+          })
+          .catch(error => console.error(error))
+      } else {
+        window.alert('No QR code to save. Generate a QR code first.');
+      }
+    }
+  }
+
+
   const keyPress = (e) => {
     if (e.key === 'Enter') {
       generate();
@@ -62,6 +83,11 @@ const App = () => {
         <button onClick={() => window.location.reload()} className='reset-button'>
           <BiReset />
         </button>
+        {
+          QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
+            <CiSaveDown1 />
+          </button> : null
+        }
       </div>
       <div className='qrcode-div'>
         {

@@ -16,7 +16,8 @@
 }
 
 .qrcode-button,
-.reset-button {
+.reset-button,
+.save-button {
     width: 35px;
     padding: 7px;
     border-radius: 10px;
