@@ -75,31 +75,35 @@ const App = () => {
 
   return (
     <Fragment>
-      <div className='display' >
-        <input ref={qrValue} className='qrcode-input' placeholder='Input anything for generating QR Code' onKeyDown={keyPress} />
-        <button onClick={generate} className='qrcode-button' title='Generate QR Code'>
-          <BsQrCode />
-        </button>
-        <button onClick={() => window.location.reload()} className='reset-button'>
-          <BiReset />
-        </button>
-        {
-          QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
-            <CiSaveDown1 />
-          </button> : null
-        }
-      </div>
-      <div className='qrcode-div'>
-        {
-          loading ? <p>Generating Your QR Code Please Wait...</p> :
-            <Fragment>
-              {
-                QrDatas.length === 0 ? <p>Qr code will show here</p> :
-                  qrImageUrl && <img src={qrImageUrl} alt='qr code' draggable='true' title={qrValue.current.value} />
-              }
-            </Fragment>
-        }
-      </div>
+      <section className='parent-div'>
+        <div className='display' >
+          <input ref={qrValue} className='qrcode-input' placeholder='Input anything for generating QR Code' onKeyDown={keyPress} />
+        </div>
+          <div className='buttons-block'>
+            <button onClick={generate} className='qrcode-button' title='Generate QR Code'>
+              <BsQrCode />
+            </button>
+            <button onClick={() => window.location.reload()} className='reset-button' title='Reset Page'>
+              <BiReset />
+            </button>
+            {
+              QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
+                <CiSaveDown1 />
+              </button> : null
+            }
+          </div>
+        <div className='qrcode-div'>
+          {
+            loading ? <p>Generating Your QR Code Please Wait...</p> :
+              <Fragment>
+                {
+                  QrDatas.length === 0 ? <p>Qr code will show here</p> :
+                    qrImageUrl && <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
+                }
+              </Fragment>
+          }
+        </div>
+      </section>
     </Fragment>
   )
 }

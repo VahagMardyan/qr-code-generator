@@ -5,22 +5,28 @@
     user-select: none;
 }
 
+.parent-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-block: 10%;
+}
+
 .display {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.qrcode-input {
-    width: 25%;
-    padding: 7px;
-    border-radius: 10px;
-}
-
-.qrcode-button,
-.reset-button,
-.save-button {
-    width: 35px;
-    padding: 7px;
-    border-radius: 10px;
+.buttons-block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1%;
+    margin-block: 10px;
 }
 
 .qrcode-div {
@@ -35,4 +41,50 @@
 .qrcode-div img {
     width: 250px;
     height: 250px;
+    border: 1px solid black;
+}
+
+.qrcode-input {
+    width: 39%;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.qrcode-button,
+.reset-button,
+.save-button {
+    width: 11%;
+    padding: 7px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 1px solid black;
+    transition: 0.3s;
+}
+
+.qrcode-button {
+    background-color: #5dbea3;
+}
+
+.qrcode-button:is(:hover) {
+    background-color: #20cfd8;
+}
+
+.reset-button {
+    background-color: #145888;
+}
+
+.reset-button:is(:hover) {
+    background-color: #007486;
+}
+
+.save-button {
+    background-color: #2098d9;
+}
+
+.save-button:is(:hover) {
+    background-color: #006b99;
+}
+
+button {
+    cursor: pointer;
 }
