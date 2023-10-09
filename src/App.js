@@ -98,7 +98,7 @@ const App = () => {
               <Fragment>
                 {
                   QrDatas.length === 0 ? <p>Qr code will show here</p> :
-                    qrImageUrl && <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
+                    <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
                 }
               </Fragment>
           }
