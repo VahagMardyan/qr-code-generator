@@ -57,7 +57,7 @@ const App = () => {
         fetch(qrImageUrl)
           .then(response => response.blob())
           .then(blob => {
-            saveAs(blob, 'qr-code.png');
+            saveAs(blob, `qr-code.png`);
           })
           .catch(error => console.error(error))
       } else {
