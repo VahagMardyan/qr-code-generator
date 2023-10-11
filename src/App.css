@@ -52,8 +52,9 @@
 
 .qrcode-button,
 .reset-button,
-.save-button {
-    width: 11%;
+.save-button,
+.clear-button {
+    width: 9%;
     padding: 7px;
     border-radius: 10px;
     font-size: 20px;
@@ -83,6 +84,14 @@
 
 .save-button:is(:hover) {
     background-color: #006b99;
+}
+
+.clear-button {
+    background-color: #3ea487;
+}
+
+.clear-button:is(:hover) {
+    background-color: #21735c;
 }
 
 button {

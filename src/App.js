@@ -1,5 +1,6 @@
 import { useRef, Fragment, useState, useEffect } from 'react';
 import QRCode from 'qrcode';
+import {AiOutlineClear} from 'react-icons/ai';
 import { BsQrCode } from 'react-icons/bs';
 import { BiReset } from 'react-icons/bi';
 import { CiSaveDown1 } from 'react-icons/ci';
@@ -34,7 +35,6 @@ const App = () => {
             .then(url => {
               setQrImageUrl(url);
               setLoading(false);
-              qrValue.current.value = '';
             })
             .catch(error => {
               setLoading(false);
@@ -66,39 +66,56 @@ const App = () => {
     }
   }
 
-
   const keyPress = (e) => {
     if (e.key === 'Enter') {
       generate();
     };
   };
 
+  const clearInput = ()=> {
+    if(qrValue.current.value) {
+      return qrValue.current.value = '';
+    } else {
+      return window.alert('Nothing to clear in input');
+    }
+  }
+
   return (
     <Fragment>
       <section className='parent-div'>
         <div className='display' >
-          <input ref={qrValue} className='qrcode-input' placeholder='Input anything for generating QR Code' onKeyDown={keyPress} />
+          <input ref={qrValue} className='qrcode-input' placeholder='Input link or something for generate a QR Code' onKeyDown={keyPress} />
         </div>
-          <div className='buttons-block'>
-            <button onClick={generate} className='qrcode-button' title='Generate QR Code'>
-              <BsQrCode />
-            </button>
-            <button onClick={() => window.location.reload()} className='reset-button' title='Reset Page'>
-              <BiReset />
-            </button>
-            {
-              QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
-                <CiSaveDown1 />
-              </button> : null
-            }
-          </div>
+        <div className='buttons-block'>
+          <button onClick={generate} className='qrcode-button' title='Generate QR Code'>
+            <BsQrCode />
+          </button>
+          <button onClick={() => window.location.reload()} className='reset-button' title='Reset Page'>
+            <BiReset />
+          </button>
+          {
+            QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
+              <CiSaveDown1 />
+            </button> : null
+          }
+          <button onClick={clearInput} title='clear input' className='clear-button'>
+            <AiOutlineClear/>
+          </button>
+        </div>
         <div className='qrcode-div'>
           {
             loading ? <p>Generating Your QR Code Please Wait...</p> :
               <Fragment>
                 {
                   QrDatas.length === 0 ? <p>Qr code will show here</p> :
-                    <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
+
+                    qrValue.current.value.includes('http')
+                      // eslint-disable-next-line react/jsx-no-target-blank
+                      ? <a style={{ cursor: 'pointer' }} href={qrValue.current.value} target='_blank'>
+                        <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
+                      </a>
+                      :
+                      <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
                 }
               </Fragment>
           }
