@@ -1,6 +1,6 @@
 import { useRef, Fragment, useState, useEffect } from 'react';
 import QRCode from 'qrcode';
-import {AiOutlineClear} from 'react-icons/ai';
+import { AiOutlineClear } from 'react-icons/ai';
 import { BsQrCode } from 'react-icons/bs';
 import { BiReset } from 'react-icons/bi';
 import { CiSaveDown1 } from 'react-icons/ci';
@@ -9,7 +9,7 @@ import './App.css';
 
 const App = () => {
 
-  const qrValue = useRef(null);
+  const qrValue = useRef('');
   const [qrImageUrl, setQrImageUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [QrDatas, setQrDatas] = useState([]);
@@ -72,14 +72,6 @@ const App = () => {
     };
   };
 
-  const clearInput = ()=> {
-    if(qrValue.current.value) {
-      return qrValue.current.value = '';
-    } else {
-      return window.alert('Nothing to clear in input');
-    }
-  }
-
   return (
     <Fragment>
       <section className='parent-div'>
@@ -98,9 +90,11 @@ const App = () => {
               <CiSaveDown1 />
             </button> : null
           }
-          <button onClick={clearInput} title='clear input' className='clear-button'>
-            <AiOutlineClear/>
-          </button>
+          {
+            qrValue.current.value ? <button onClick={() => qrValue.current.value = ''} title='clear input' className='clear-button'>
+              <AiOutlineClear />
+            </button> : null
+          }
         </div>
         <div className='qrcode-div'>
           {
