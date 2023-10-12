@@ -59,9 +59,7 @@ const App = () => {
           .then(blob => {
             saveAs(blob, `qr-code.png`);
           })
-          .catch(error => console.error(error))
-      } else {
-        window.alert('No QR code to save. Generate a QR code first.');
+          .catch(error => console.error(error));
       }
     }
   }
@@ -86,14 +84,18 @@ const App = () => {
             <BiReset />
           </button>
           {
-            QrDatas.length !== 0 ? <button onClick={download} title='Download QR Code' className='save-button'>
-              <CiSaveDown1 />
-            </button> : null
+            QrDatas.length !== 0 ?
+              <button onClick={download} title='Download QR Code' className='save-button'>
+                <CiSaveDown1 />
+              </button>
+              : null
           }
           {
-            qrValue.current.value ? <button onClick={() => qrValue.current.value = ''} title='clear input' className='clear-button'>
-              <AiOutlineClear />
-            </button> : null
+            qrValue.current.value ?
+              <button onClick={() => qrValue.current.value = ''} title='clear input' className='clear-button'>
+                <AiOutlineClear />
+              </button>
+              : null
           }
         </div>
         <div className='qrcode-div'>
@@ -106,7 +108,7 @@ const App = () => {
                     qrValue.current.value.includes('http')
                       // eslint-disable-next-line react/jsx-no-target-blank
                       ? <a style={{ cursor: 'pointer' }} href={qrValue.current.value} target='_blank'>
-                        <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
+                        <img src={qrImageUrl} alt='qr code' draggable='false' />
                       </a>
                       :
                       <img src={qrImageUrl} alt='qr code' draggable='false' title={qrValue.current.value} />
