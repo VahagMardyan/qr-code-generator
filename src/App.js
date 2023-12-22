@@ -22,7 +22,7 @@ const App = () => {
         </Routes>
       </section>
       <footer>
-        <p> <sup>For Personal Use</sup> </p>
+        {/* <p> <sup>For Personal Use</sup> </p> */}
       </footer>
     </Fragment>
   )
